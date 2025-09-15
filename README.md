@@ -39,7 +39,12 @@ The system was designed to replace paper-based processes with a modern IT soluti
 ---
 
 ## 🚀 Contributions  
-Focused on building:  
-- ✅ Secure, role-based access for Admin, Members, and Management  
-- ✅ A user-friendly, consistent interface  
-- ✅ Scalable design for future expansion (e.g., café integration)  
+As part of a **team of six developers**, I contributed significantly to the successful delivery of the UTCS prototype:  
+
+- 👥 **Team Collaboration** – worked in an Agile environment across 2 sprints, using Jira for task tracking and GitHub/Bitbucket for version control  
+- 💺 **Developed Functional Booking System** – implemented workspace reservation flow, including date/time selection and PayPal payment integration  
+- 🔐 **Secure Login** – designed and implemented role-based access (Member, Admin, Management) with session validation  
+- 💬 **User Feedback & UX** – built clear, intuitive PrimeFaces UI components with consistent layouts and real-time validation messages  
+- 🧪 **Testing & Quality Assurance** – created automated unit tests with **JUnit**, achieving **80%+ code coverage** to ensure robustness and maintainability  
+- 📈 **Scalability Considerations** – ensured system design could support future expansion (e.g., café service integration)  
+
