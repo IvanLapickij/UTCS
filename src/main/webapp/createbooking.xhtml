@@ -1,0 +1,134 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="memberTemplate.xhtml">
+
+    <ui:define name="title">UTCS Members Dashboard</ui:define>
+
+    <ui:define name="content">
+        <div class="workspace-container">
+
+            <h:form id="bookingForm" styleClass="booking-form">
+                <p:messages id="msgs" showDetail="true" closable="true" />
+
+                <div class="booking-layout">
+                    <!-- left column: inputs -->
+                    <div class="form-column">
+
+                        <!-- Room -->
+                        <div class="form-row form-row--inline">
+                            <label for="room" class="booking-label">Room type</label>
+                            <p:selectOneMenu id="room"
+                                             value="#{bookingBean.selectedRoomId}"
+                                             styleClass="input-field">
+                                <f:selectItem itemLabel="Select a room..." noSelectionOption="true" />
+                                <f:selectItems value="#{workspaceData.workspaces}"
+                                               var="ws"
+                                               itemValue="#{ws.roomID}"
+                                               itemLabel="#{ws.name} (#{ws.roomType}) – €#{ws.price}/hr" />
+                                <p:ajax listener="#{bookingBean.recalcSubTotal(workspaceData.findById(bookingBean.selectedRoomId))}" update="summary preview msgs" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <!-- Start Date Time Picker -->
+                        <div class="form-row form-row--inline">
+                            <label for="start" class="booking-label">Start</label>
+                            <p:calendar id="start" widgetVar="startCal"
+                                        value="#{bookingBean.startDateTime}"
+                                        pattern="dd/MM/yyyy HH:mm"
+                                        timeZone="Europe/Dublin"
+                                        mindate="#{bookingBean.today}"
+                                        minHour="9" maxHour="17"
+                                        showButtonPanel="true" navigator="true"
+                                        stepMinute="60" showSecond="false"
+                                        validator="#{bookingBean.dateFilter}"
+                                        styleClass="input-field">
+                                <p:ajax event="dateSelect"
+                                        listener="#{bookingBean.recalcSubTotal(workspaceData.findById(bookingBean.selectedRoomId))}"
+                                        update="summary msgs" />
+                            </p:calendar>
+                        </div>
+
+                        <!-- End Date Time Picker -->
+                        <div class="form-row form-row--inline">
+                            <label for="end" class="booking-label">End</label>
+                            <p:calendar id="end" widgetVar="endCal"
+                                        value="#{bookingBean.endDateTime}"
+                                        pattern="dd/MM/yyyy HH:mm"
+                                        timeZone="Europe/Dublin"
+                                        mindate="#{bookingBean.today}"
+                                        minHour="9" maxHour="17"
+                                        showButtonPanel="true" navigator="true"
+                                        stepMinute="60" showSecond="false"
+                                        validator="#{bookingBean.dateFilter}"
+                                        styleClass="input-field">
+                                <p:ajax event="dateSelect"
+                                        listener="#{bookingBean.recalcSubTotal(workspaceData.findById(bookingBean.selectedRoomId))}"
+                                        update="summary msgs" />
+                            </p:calendar>
+                        </div>
+                    </div> <!-- /.form-column -->
+
+                    <!-- right column: preview -->
+					<p:outputPanel id="preview" styleClass="preview-panel">
+						<h:panelGroup rendered="#{bookingBean.selectedRoomId != null}">
+							<h:graphicImage library="images"
+								name="#{workspaceData.findById(bookingBean.selectedRoomId).imageFile}"
+								alt="#{workspaceData.findById(bookingBean.selectedRoomId).name}"
+								styleClass="preview-image" />
+							<div>
+								<strong>Selected:</strong>
+								#{workspaceData.findById(bookingBean.selectedRoomId).name} <em>(#{workspaceData.findById(bookingBean.selectedRoomId).roomType})</em>
+								–
+								€#{workspaceData.findById(bookingBean.selectedRoomId).price}/hr
+							</div>
+						</h:panelGroup>
+					</p:outputPanel>
+
+				</div> <!-- /.booking-layout -->
+
+                <!-- Summary -->
+                <p:panel id="summary" styleClass="summary-panel">
+                    <p:outputPanel id="subTotal" styleClass="summary-row">
+                        <strong>Subtotal: </strong>
+                        <h:outputText value=" #{bookingBean.subTotal}">
+                            <f:convertNumber type="currency" currencySymbol="€"
+                                             maxFractionDigits="2" minFractionDigits="2" />
+                        </h:outputText>
+                    </p:outputPanel>
+
+                    <p:outputPanel id="tax" styleClass="summary-row">
+                        <strong>Tax:</strong>
+                        <h:outputText value="#{bookingBean.tax}">
+                            <f:convertNumber type="currency" currencySymbol="€"
+                                             maxFractionDigits="2" minFractionDigits="2" />
+                        </h:outputText>
+                    </p:outputPanel>
+
+                    <p:outputPanel id="total" styleClass="summary-row">
+                        <strong>Total:</strong>
+                        <h:outputText value="#{bookingBean.totalAmount}">
+                            <f:convertNumber type="currency" currencySymbol="€"
+                                             maxFractionDigits="2" minFractionDigits="2" />
+                        </h:outputText>
+                    </p:outputPanel>
+                </p:panel>
+
+                <!-- Actions -->
+                <div class="actions-row">
+                    <p:commandButton value="Proceed to Payment"
+                                     action="#{bookingBean.proceedToPayment}"
+                                     update="msgs summary"
+                                     
+                                     styleClass="ui-button-success" />
+                    <p:commandButton value="Cancel"
+                              action="#{memberDashboardBean.viewWorkspaces}"
+                              styleClass="ui-button-secondary" />
+                </div>
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

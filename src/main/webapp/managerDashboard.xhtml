@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UTCS Manager Dashboard</title>
+    <link rel="icon" type="image/jpeg" href="resources/images/favicon.jpg" />
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<f:event type="preRenderView"
+			listener="#{managerDashboardBean.checkLogin}" />
+	</f:view>
+
+    <!-- Header -->
+    <div class="header">UTCS Manager Dashboard</div>
+
+    <!-- Layout Container: Sidebar and Main Content -->
+    <div class="layout-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>UTCS</h2>
+            <h:form style="flex-grow: 1; display: flex; flex-direction: column;">
+                <ul style="padding: 0; margin: 0; list-style: none; flex-grow: 1;">
+					<li><h:commandLink value="📝 Financial Reports"
+							action="#{managerDashboardBean.financialReports}" /></li>
+				</ul>
+
+				<!-- Auth buttons section at bottom -->
+				<ul>
+					<li><h:messages globalOnly="true" layout="table"
+							styleClass="error-messages" /></li>
+					<li class="sidebar-button"><h:commandButton value="Logout"
+							action="#{managerDashboardBean.logout}" styleClass="btn-primary"
+							rendered="#{managerDashboardBean.managerLoggedIn}" /> <h:commandButton
+							value="Login" action="login" styleClass="btn-primary"
+							rendered="#{not managerDashboardBean.managerLoggedIn}" /></li>
+				</ul>
+			</h:form>
+        </div>
+
+        <!-- Main content area: workspace cards will appear here -->
+        <div class="main-content">
+			<h:panelGroup rendered="#{managerDashboardBean.isManagerLoggedIn()}">
+				<ui:insert name="content" />
+			</h:panelGroup>
+		</div>
+    </div>
+</h:body>
+</html>

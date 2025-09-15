@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template.xhtml">
+
+    <ui:define name="title">Contact Us - UTCS</ui:define>
+    <ui:define name="content">
+        <style>
+            .contact-container {
+                max-width: 700px;
+                margin: 40px auto;
+                padding: 20px;
+                font-family: Arial, sans-serif;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+
+            .contact-container h2 {
+                margin-bottom: 20px;
+                color: #2c3e50;
+            }
+
+            .contact-info {
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+
+            .label {
+                font-weight: bold;
+                color: #34495e;
+            }
+
+            .back-button {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .home-button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .home-button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+
+        <div class="contact-container">
+            <h2>📞 Contact Us</h2>
+
+            <div class="contact-info">
+                <span class="label">Address:</span> UTCS Campus, Tech Park Road, University City, 12345
+            </div>
+
+            <div class="contact-info">
+                <span class="label">Phone:</span> +1 (123) 456-7890
+            </div>
+
+            <div class="contact-info">
+                <span class="label">Email:</span>
+                <h:outputLink value="mailto:support@utcs.edu">support@utcs.edu</h:outputLink>
+            </div>
+
+            <div class="contact-info">
+                <span class="label">Office Hours:</span> Monday - Friday, 9:00 AM - 5:00 PM
+            </div>
+
+           
+        </div>
+    </ui:define>
+</ui:composition>

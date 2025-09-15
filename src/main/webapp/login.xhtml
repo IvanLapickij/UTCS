@@ -1,0 +1,71 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="template.xhtml">
+
+    <ui:define name="title">Login - UTCS</ui:define>
+    <ui:define name="content">
+
+    <div class="login-page-container">
+        <div class="login-box">
+            <h:form id="loginForm">
+                <h2 class="form-title">Login</h2>
+				
+				<h:panelGrid columns="2" cellpadding="8"
+				             columnClasses="labelCol,inputCol"
+				             styleClass="form-grid">
+				
+				    <h:outputLabel for="username" value="Username:" />
+				    <p:inputText id="username"
+				                 value="#{loginController.username}"
+				                 required="true"
+				                 requiredMessage="Username required"
+				                 styleClass="input-field" />
+				
+				    <h:outputLabel for="password" value="Password:" />
+				    <p:password id="password"
+				                value="#{loginController.password}"
+				                required="true"
+				                requiredMessage="Password required"
+				                styleClass="input-field">
+				    </p:password>
+				</h:panelGrid>
+				
+				            
+				<p:messages id="loginMessages"
+				            showDetail="true"
+				            showSummary="false"
+				            autoUpdate="true"
+				            closable="true"
+				            styleClass="global-messages" />
+
+				<div class="form-actions">
+				    <p:commandButton value="Login"
+				                     action="#{loginController.logUserIn}"
+				                     styleClass="btn-primary"
+				                     update="@form" />
+				</div>
+				
+                <!-- Register section (conditionally shown) -->
+                <h:panelGroup id="registerPanel"
+                              layout="block"
+                              styleClass="register-panel">
+                    <div class="register-message">
+                        <h:outputText value="Not registered? " />
+                        <h:commandLink value="Create an account"
+                                       action="#{loginController.redirectToRegister}"
+                                       immediate="true"
+                                       styleClass="register-link" />
+                    </div>
+                </h:panelGroup>
+            </h:form>
+
+        </div>
+    </div>
+
+
+</ui:define>
+</ui:composition>

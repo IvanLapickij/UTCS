@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+	<ui:define name="title">Show Register - UTCS</ui:define>
+	<ui:define name="content">
+<div class="register-page-container">
+		<div class="login-box">
+			<h:form id="form-container">
+				<div class="form-grid center-grid">
+					<h:panelGroup styleClass="success-message">
+						<h2>✅ Successfully Registered!</h2>
+						<p>Your registration details are below:</p>
+					</h:panelGroup>
+					<h1>Registration Details</h1>
+					<ul class="details-list">
+
+						<li><strong>Username:</strong> #{registrationBean.username}</li>
+						<li><strong>First name:</strong>
+							#{registrationBean.firstName}</li>
+						<li><strong>Last name:</strong> #{registrationBean.lastName}</li>
+						<li><strong>Email:</strong> #{registrationBean.emailAddress}</li>
+						<li><strong>Password:</strong>
+							#{registrationBean.obscuredPassword}</li>
+					</ul>
+				</div>
+
+
+				<div class="form-actions">
+					<h:commandButton value="Login now"
+						action="#{registrationBean.clearRegForm}" styleClass="btn-primary" />
+				</div>
+			</h:form>
+		</div>
+	</div>
+	</ui:define>
+</ui:composition>

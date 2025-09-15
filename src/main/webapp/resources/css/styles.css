@@ -1,0 +1,632 @@
+/* =========================
+   Base & Layout
+   ========================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: white;
+    color: #2c3e50;
+}
+
+.header {
+    background-color: #0fb9b1;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #004d4d;
+    width: 250px;
+    padding: 2rem 1rem 3rem 1rem;
+    color: #ecf0f1;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #ccc;
+}
+.sidebar h2 {
+    color: #ecf0f1;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+.sidebar p { text-align: center; margin-bottom: 1rem; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { margin: 1rem 0; }
+.sidebar a {
+    display: block;
+    color: #ecf0f1;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+.sidebar a:hover {
+    background-color: #10ac84;
+    border-radius: 5px;
+    padding-left: 1.5rem;
+}
+.sidebar a.active {
+    background-color: #0fb9b1;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.sidebar .error-messages {
+    text-align: center;
+    color: #ee5253;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Main content area */
+.main-content {
+    padding: 20px;
+    background-color: #f7f9fa;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+
+/* Buttons */
+.btn-primary, .nav-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #0fb9b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover, .nav-btn:hover {
+    background-color: #10ac84;
+    transform: translateY(-2px);
+}
+
+/* Messages */
+.ui-message-error-detail,
+.ui-messages-error .ui-messages-detail {
+    color: #c0392b;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #fce7e7;
+    border-left: 4px solid #e74c3c;
+    border-radius: 4px;
+}
+
+/* =========================
+   Workspace Cards
+   ========================= */
+.workspace-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.workspace-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 280px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.workspace-card:hover { transform: scale(1.03); }
+
+.workspace-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.workspace-card h3 { margin: 10px 0 5px; font-size: 1.3em; }
+.workspace-card .description { font-size: 0.95em; color: #666; margin-bottom: 10px; }
+
+/* =========================
+   Confirm Booking (confirm.xhtml)
+   ========================= */
+.confirm-booking-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 60vh;
+    background-color: #f7f9fa;
+}
+
+.confirm-bookinge-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.confirm-bookinge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+.booking-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 1.5rem;
+}
+.booking-card h3 {
+    font-size: 1.6rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.booking-card p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin: 0.5rem 0;
+    display: flex;                 /* merged layout rule */
+    justify-content: space-between;
+    align-items: center;
+}
+.booking-card p strong { color: #2c3e50; }
+.booking-card p:last-child { font-size: 1.2rem; color: #e74c3c; font-weight: bold; }
+/* =========================
+   Create Booking (createbooking.xhtml)
+   ========================= */
+.input-field:focus {
+    outline: none;
+    border-color: #0fb9b1;
+    box-shadow: 0 0 5px rgba(15, 185, 177, 0.5);
+}
+
+/* Reduce PF default margins to avoid “double spacing” */
+.booking-form .ui-inputfield,
+.booking-form .ui-selectonemenu,
+.booking-form .ui-calendar,
+.booking-form .ui-selectonemenu-label,
+.booking-form .ui-calendar input.ui-inputfield {
+    margin: 0 !important;
+}
+
+.booking-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.booking-form {
+    flex: 1 1 360px;
+    min-width: 280px;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;                 /* merged alignment rule */
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-row { margin-bottom: .75rem; }
+
+/* Inline label + field (centered vertically) */
+.form-row--inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Left label */
+.booking-label {
+    width: 130px;
+    text-align: right;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.preview-panel { flex: 0 1 360px; min-width: 260px; }
+
+.preview-image {
+    width: 100%;
+    max-width: 360px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: .5rem;
+}
+
+.summary-panel {
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .35rem 0;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+.summary-row strong { font-weight: 600; }
+
+.actions-row {
+    display: flex;
+    gap: .5rem;
+    margin-top: 1rem;
+}
+
+/* Hide minute controls in PF calendar */
+.ui-timepicker-div .ui_tpicker_minute,
+.ui-timepicker-div .ui_tpicker_minute_label,
+.ui-timepicker-div .ui_tpicker_minute_slider {
+    display: none !important;
+}
+/* =========================
+   Responsive
+   ========================= */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60%;
+    }
+    .main-content {
+        margin-left: 60%;
+        padding: 15px;
+    }
+    .confirm-booking-container { padding: 15px; }
+    .confirm-bookinge-card { padding: 1.5rem; max-width: 90%; }
+    .booking-card { padding: 1rem; }
+    .booking-card h3 { font-size: 1.4rem; }
+
+    /* Create booking: reorder on small screens */
+    .preview-panel { order: 2; }
+    .booking-form  { order: 1; }
+}
+
+
+
+
+/* Dashboard Cards */
+.dashboard-card {
+    background-color: #f8f9fa; /* soft smoke gray */
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #ccebe8; /* subtle teal border */
+    min-height: 120px;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-icon {
+    font-size: 2rem; /* reduced size */
+    margin-bottom: 0.5rem;
+    color: #0fb9b1;
+}
+
+.dashboard-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    color: #34495e;
+}
+
+.dashboard-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Admin - Users */
+/* Consistent table container */
+.table-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.member-table {
+    width: 100% !important;
+}
+
+/* Admin - Reports */
+
+/* Card Component */
+.fr-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+}
+
+/* Only apply vertical spacing to top-level cards, 
+   not inside the grid */
+.fr-main > .fr-card + .fr-card {
+    margin-top: 1.25rem;
+}
+
+/* Grid for metrics + charts */
+.fr-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.fr-cards-grid .fr-card {
+    margin-top: 0; /* prevent extra spacing in grid */
+}
+
+/* Ensure summary spans full width */
+.fr-summary {
+    grid-column: 1 / -1;
+}
+
+/* Table Styling */
+.fr-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.fr-table th, .fr-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.fr-table th {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+/* Buttons */
+.fr-actions {
+    margin-top: 1rem;
+}
+
+.fr-actions button {
+    background-color: #00b3b3;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fr-actions button:hover {
+    background-color: #008c8c;
+}
+
+/* Admin - CreateWorkspace */
+.create-workspace-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    padding-top: 60px;
+    min-height: 100vh;
+
+}
+
+
+.create-workspace-box {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333333;
+}
+
+
+.form-grid {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.labelCol {
+    width: 30%;
+    text-align: left;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 15px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+.inputCol {
+    width: 70%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.input-field,
+.ui-inputfield,
+.ui-selectonemenu,
+.ui-spinner-input {
+    width: 100% !important;
+    max-width: 300px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+
+.ui-selectonemenu {
+    width: 95% !important;
+}
+
+
+h\\:panelGroup[layout="block"] .ui-inputfield {
+    width: 90% !important;
+}
+
+
+.form-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.action-button {
+    margin: 0 10px;
+    min-width: 160px;
+}
+
+.global-messages {
+    margin-bottom: 20px;
+}
+
+/* Container */
+.home-content {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #ffffff, #f2f8fc);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.home-content h2 {
+    text-align: center;
+    color: #004d66;
+    font-size: 26px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Paragraphs */
+.home-content p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333333;
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #2c3e50;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Site Header */
+.site-header {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    padding: 25px 10px;
+    color: #2c3e50;
+}
+
+.main-dashboard {
+	flex-grow: 1;
+	padding: 4rem 2rem;
+	text-align: center;
+}
+
+.under-construction {
+	background-color: #fff;
+	padding: 3rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	display: inline-block;
+}
+
+.under-construction h1 {
+	font-size: 2.5rem;
+	color: #ee5253;
+	margin-bottom: 1rem;
+}
+
+.under-construction p {
+	font-size: 1.2rem;
+	color: #555;
+}
+
+/* Login Page Container */
+.login-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Login Box */
+.login-box {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-box:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.register-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+

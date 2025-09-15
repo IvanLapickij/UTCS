@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="memberTemplate.xhtml">
+
+    <ui:define name="title">Payment Confirmation</ui:define>
+
+    <ui:define name="content">
+		    <div class="confirm-booking-container">
+		        <div class="confirm-bookinge-card">
+					<f:event type="preRenderView" listener="#{bookingBean.confirmPayment}" />
+					
+					<ui:param name="booking" value="#{bookingData.getById(bookingBean.bookingId)}" />
+					
+					<h:panelGroup rendered="#{not empty booking}">
+					    <div class="booking-card">
+					        <h3>Workspace: #{booking.workspace.name}</h3>
+					        <p><strong>Member:</strong> #{booking.memberUsername}</p>
+					        <p><strong>From:</strong> #{booking.formattedStartDate}</p>
+					        <p><strong>To:</strong> #{booking.formattedEndDate}</p>
+					        <p><strong>Status:</strong> #{booking.status}</p>
+					        <p><strong>Total Price:</strong> €<h:outputText value="#{booking.totalPrice}">
+						            <f:convertNumber pattern="###,##0.00"/>
+						        </h:outputText>
+						   	</p>
+					    </div>
+					</h:panelGroup>
+				</div>
+		    </div>
+    </ui:define>
+
+</ui:composition>

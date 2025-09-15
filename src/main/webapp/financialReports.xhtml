@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+                template="managerDashboard.xhtml">
+    <ui:define name="title">UTCS Manager Dashboard</ui:define>
+    <ui:define name="content">
+		<!-- Main content -->
+		<div class="fr-main">
+
+			<!-- 2) Below-the-fold cards in a responsive grid -->
+			<div class="fr-cards-grid">
+
+				<!-- KPIs -->
+				<div class="fr-card">
+					<div class="fr-card-header">Key Metrics</div>
+					<div class="fr-card-body">
+						<div class="fr-kpis">
+							<div class="fr-kpi">
+								<div class="fr-kpi-title">Revenue</div>
+								<div class="fr-kpi-value">
+									<h:outputText value="#{financialReportsBean.totalRevenue}">
+										<f:convertNumber type="currency" currencySymbol="€"
+											maxFractionDigits="2" />
+									</h:outputText>
+								</div>
+
+								<hr />
+								<h4>Summary by Month</h4>
+								<table class="fr-table">
+									<thead>
+										<tr>
+											<th>Month</th>
+											<th>Revenue</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><h:outputText
+													value="#{financialReportsBean.monthsLabel(0)}" /></td>
+											<td><h:outputText
+													value="#{financialReportsBean.revenuePerMonth(financialReportsBean.monthsLabel(0))}">
+													<f:convertNumber type="currency" currencySymbol="€"
+														maxFractionDigits="2" />
+												</h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText
+													value="#{financialReportsBean.monthsLabel(-1)}" /></td>
+											<td><h:outputText
+													value="#{financialReportsBean.revenuePerMonth(financialReportsBean.monthsLabel(-1))}">
+													<f:convertNumber type="currency" currencySymbol="€"
+														maxFractionDigits="2" />
+												</h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText
+													value="#{financialReportsBean.monthsLabel(-2)}" /></td>
+											<td><h:outputText
+													value="#{financialReportsBean.revenuePerMonth(financialReportsBean.monthsLabel(-2))}">
+													<f:convertNumber type="currency" currencySymbol="€"
+														maxFractionDigits="2" />
+												</h:outputText></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hours booked per workspace (Bar chart) -->
+				<h:form id="hoursForm">
+					<div class="fr-card">
+						<div class="fr-card-header">Hours Booked per Workspace</div>
+						<div class="fr-card-body">
+							<p:chart id="hoursBar" type="bar" model="#{chartView.barModel}"
+								style="width:100%; height:400px;" />
+						</div>
+					</div>
+				</h:form>
+
+				<!-- Chart 2: Profit & Occupancy (Pie chart) -->
+				<h:form id="pieForm">
+					<div class="fr-card">
+						<div class="fr-card-header">Revenue by Workspace</div>
+						<div class="fr-card-body">
+							<p:chart id="pieChart" type="pie" model="#{chartView.pieModel}"
+								style="width:100%; height:400px;" />
+						</div>
+					</div>
+				</h:form>
+			</div>
+
+
+				<!-- /.fr-cards-grid -->
+			</div>
+			<!-- /.fr-main -->
+    </ui:define>
+</ui:composition>

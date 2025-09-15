@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="adminTemplate.xhtml">
+    <ui:define name="title">UTCS Admin Dashboard</ui:define>
+    <ui:define name="content">
+        <div class="main-dashboard">
+            <div class="dashboard-card">
+                <div class="dashboard-icon">👥</div>
+                <div class="dashboard-title">Members</div>
+                <div class="dashboard-value">#{adminDashboardBean.numOfMembers}</div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-icon">📊</div>
+                <div class="dashboard-title">Number Of Bookings</div>
+                <div class="dashboard-value">#{adminDashboardBean.numOfBookings}</div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-icon">📝</div>
+                <div class="dashboard-title">Workspaces</div>
+                <div class="dashboard-value">#{adminDashboardBean.numOfWorkspaces}</div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

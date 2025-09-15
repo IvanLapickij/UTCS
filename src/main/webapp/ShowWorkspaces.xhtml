@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="template.xhtml">
+	<ui:define name="title">Workspaces - UTCS</ui:define>
+	<ui:define name="content">
+
+ <div class="page-container">
+            <p style="color: red; font-weight: bold;">*You must be logged in to book a workspace.</p>
+            </div>
+		<!-- Main workspace content -->
+		<div class="main-dashboard">
+			<div class="workspace-container">
+				<ui:repeat value="#{workspaceData.workspaces}" var="ws">
+					<div class="workspace-card">
+						<h:graphicImage library="images" name="#{ws.imageFile}"
+							class="workspace-image" />
+						<h3>#{ws.name}</h3>
+						<p>
+							<em>#{ws.roomType}</em>
+						</p>
+						<p class="description">#{ws.description}</p>
+						<p>
+							<strong>Capacity:</strong> #{ws.maxCapacity} person(s)
+						</p>
+						<p>
+							<strong>Price:</strong> €#{ws.price}
+						</p>
+					</div>
+				</ui:repeat>
+			</div>
+		</div>
+
+
+	</ui:define>
+</ui:composition>

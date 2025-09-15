@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="memberTemplate.xhtml">
+
+    <ui:define name="title">My Bookings</ui:define>
+
+    <ui:define name="content">
+        
+        <div class="workspace-container">
+            <ui:repeat value="#{bookingData.getBookingsForUsername(memberLoginBean.username)}" var="bd">
+                <div class="workspace-card">
+                    <h3>Booking ID: #{bd.bookingId}</h3>
+                    <h:graphicImage library="images"
+                                    name="#{bd.workspace.imageFile}"
+                                    alt="#{bd.workspace.name}" 
+                                    class="workspace-image" />
+                    <h3>#{bd.workspace.name}</h3>
+                    <p><em>#{bd.workspace.roomType}</em></p>
+                    <p class="description">#{bd.workspace.description}</p>
+                    <p><strong>Total Price:</strong> €#{bd.totalPrice}</p>
+			        <p><strong>From:</strong> #{bd.formattedStartDate}</p>
+			        <p><strong>To:</strong> #{bd.formattedEndDate}</p>
+                    <p><strong>Status:</strong> #{bd.status}</p>
+                </div>
+            </ui:repeat>
+        </div>
+    </ui:define>
+</ui:composition>

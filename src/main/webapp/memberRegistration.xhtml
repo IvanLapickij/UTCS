@@ -1,0 +1,88 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+	<ui:define name="title">Register - UTCS</ui:define>
+
+	<ui:define name="content">
+<div class="register-page-container">
+		<div class="login-box">
+			<h:form id="form-container">
+				<h2 class="form-title">Register</h2>
+
+				<h:panelGrid layout="block" styleClass="form-grid">
+					<h:outputLabel for="username" value="Username:" />
+					<p:inputText id="username" value="#{registrationBean.username}"
+						required="true" requiredMessage="Username is required"
+						styleClass="input-field" />
+					<p:message for="username" display="text" styleClass="error-message" />
+
+					<h:outputLabel for="firstName" value="First Name:" />
+					<p:inputText id="firstName" value="#{registrationBean.firstName}"
+						required="true" requiredMessage="First name required"
+						styleClass="input-field" />
+					<p:message for="firstName" display="text"
+						styleClass="error-message" />
+
+
+					<h:outputLabel for="lastName" value="Last Name:" />
+					<p:inputText id="lastName" value="#{registrationBean.lastName}"
+						required="true" requiredMessage="Last name required"
+						styleClass="input-field" />
+					<p:message for="lastName" display="text" styleClass="error-message" />
+
+					<h:outputLabel for="emailAddress" value="Email:" />
+					<p:inputText id="emailAddress"
+						value="#{registrationBean.emailAddress}" required="true"
+						requiredMessage="Email address is required."
+						validatorMessage="Email address must be formatted (user@example.com)"
+						styleClass="input-field">
+						<f:validateRegex pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" />
+					</p:inputText>
+					<p:message for="emailAddress" display="text"
+						styleClass="error-message" />
+
+
+
+					<h:outputLabel for="password1" value="Password:" />
+					<p:password id="password1" value="#{registrationBean.password}"
+						feedback="true" required="true"
+						requiredMessage="Password required"
+						validatorMessage="Password must be 6 or more characters."
+						styleClass="input-field">
+						<f:validateLength minimum="6" />
+					</p:password>
+
+					<p:message for="password1" display="text"
+						styleClass="error-message" />
+
+					<h:outputLabel for="password2" value="Confirm Password:" />
+					<p:password id="password2"
+						value="#{registrationBean.confirmPassword}" feedback="true"
+						required="true" requiredMessage="Confirm Password required"
+						validatorMessage="Confirm password must match password."
+						styleClass="input-field">
+						<f:validateLength minimum="6" />
+					</p:password>
+					<p:message for="password2" display="text"
+						styleClass="error-message" />
+
+				</h:panelGrid>
+
+
+				<div class="form-actions">
+					<p:commandButton action="#{registrationBean.register}"
+						value="Register" ajax="false" styleClass="btn-primary" />
+					<p:commandButton action="#{registrationBean.cancel}" value="Cancel"
+						ajax="false" immediate="true" styleClass="btn-primary" />
+				</div>
+			</h:form>
+		</div>
+	</div>
+	</ui:define>
+</ui:composition>
+	
