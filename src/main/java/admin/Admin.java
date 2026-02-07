@@ -1,5 +1,4 @@
 package admin;
-// Admin class to represent an administrator with username and password
 public class Admin {
     private String username;
     private String password;
