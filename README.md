@@ -46,5 +46,5 @@ As part of a **team of six developers**, I contributed significantly to the succ
 - 🔐 **Secure Login** – designed and implemented role-based access (Member, Admin, Management) with session validation  
 - 💬 **User Feedback & UX** – built clear, intuitive PrimeFaces UI components with consistent layouts and real-time validation messages  
 - 🧪 **Testing & Quality Assurance** – created automated unit tests with **JUnit**, achieving **80%+ code coverage** to ensure robustness and maintainability  
-- 📈 **Scalability Considerations** – ensured system design could support future expansion (e.g., café service integration)  
+
 
