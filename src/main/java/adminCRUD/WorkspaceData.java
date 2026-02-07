@@ -52,29 +52,40 @@ public class WorkspaceData {
     public String updateWorkspace(Workspace w) {
         if (w == null) return null;
         if (w.getMaxCapacity() < 1 || w.getPrice() < 0) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid values", null));
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            if (ctx != null) {
+                ctx.addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid values", null));
+            }
             return null;
         }
         w.setImageFile(workspaceGetCorrespondingImage(w));
         w.setCanEdit(false);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Updated",
-                        "Workspace \"" + w.getName() + "\" was updated."));
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        if (ctx != null) {
+            ctx.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Updated",
+                            "Workspace \"" + w.getName() + "\" was updated."));
+        }
         return null;
     }
 
     public String deleteWorkspace(Workspace w) {
         if (w == null) return null;
         boolean removed = workspaces.removeIf(ws -> ws.getRoomID() == w.getRoomID());
+        FacesContext ctx = FacesContext.getCurrentInstance();
         if (removed) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Deleted",
-                            "Workspace \"" + w.getName() + "\" was deleted."));
+            if (ctx != null) {
+                ctx.addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Deleted",
+                                "Workspace \"" + w.getName() + "\" was deleted."));
+            }
         } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Not found",
-                            "Workspace could not be found."));
+            if (ctx != null) {
+                ctx.addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Not found",
+                                "Workspace could not be found."));
+            }
         }
         return null;
     }

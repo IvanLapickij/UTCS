@@ -117,7 +117,7 @@ public class AdminDashboardBeanTest {
     public void testViewReports_WhenLoggedIn() {
         System.out.println("Running: testViewReports_WhenLoggedIn");
         String result = dashboardBean.viewReports();
-        assertEquals("reports", result);
+        assertEquals("adminFinancialReports", result);
     }
 
     @Test
